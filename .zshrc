@@ -25,6 +25,9 @@ which grunt > /dev/null && eval "$(grunt --completion=bash)"
 # If possible, add tab completion for many more commands
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 
+# Z
+[ -f ~/Code/opensource/z/z.sh ] && . ~/Code/opensource/z/z.sh
+
 # Update python path
 export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
 
@@ -38,9 +41,6 @@ fi
  
 # PIP Settings
 export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache/
-
-# Customize to your needs...
-export PATH=:$PATH
 
 # Python 2.7.4
 alias mkve='mkvirtualenv --no-site-packages --python=/usr/local/Cellar/python/2.7.4/bin/python'

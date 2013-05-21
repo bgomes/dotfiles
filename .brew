@@ -26,55 +26,12 @@ git clone https://gist.github.com/5449283.git ~/.oh-my-zsh/themes/hersonls
 brew install python
 brew install python3
 
-# Install wget with IRI support
-brew install wget --enable-iri
-
-# Install more recent versions of some OS X tools
-brew tap homebrew/dupes
-brew install homebrew/dupes/grep
-brew tap josegonzalez/homebrew-php
-brew install php54
-
 # Install other useful binaries
-brew install ack
 brew install git
 brew install lynx
-brew install node
-brew install pigz
-brew install rename
-brew install rhino
-brew install tree
-brew install webkit2png
-brew install zopfli
+brew install nodejs
 
 brew tap homebrew/versions
-
-# Install native apps
-brew tap phinze/homebrew-cask
-brew install brew-cask
-
-function installcask() {
-	if brew cask info "${@}" | grep "Not installed" > /dev/null; then
-		brew cask install "${@}"
-	else
-		echo "${@} is already installed."
-	fi
-}
-
-installcask dropbox
-installcask google-chrome
-installcask google-chrome-canary
-installcask imagealpha
-installcask imageoptim
-installcask iterm2
-installcask macvim
-installcask miro-video-converter
-installcask sublime-text
-installcask the-unarchiver
-installcask tor-browser
-installcask ukelele
-installcask virtualbox
-installcask vlc
 
 # Remove outdated versions from the cellar
 brew cleanup

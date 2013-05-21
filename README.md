@@ -4,24 +4,32 @@ This is my version from [Mathias’s dotfiles](https://github.com/mathiasbynens/
 
 ## How to install
 
-### Using Git and the bootstrap script
+### Using Git and the sync script
 
 You can clone the repository:
 
 ```bash
-git clone git@github.com:hersonls/dotfiles.git && cd dotfiles && source bootstrap.sh
+git clone git@github.com:hersonls/dotfiles.git && cd dotfiles && source sync.sh
 ```
 
 To update, `cd` into your local `dotfiles` repository and then:
 
+Install dependences
+
 ```bash
-source bootstrap.sh
+sh install_deps.sh
+```
+
+Sync dotfiles
+
+```bash
+source sync.sh
 ```
 
 Alternatively, to update while avoiding the confirmation prompt:
 
 ```bash
-set -- -f; source bootstrap.sh
+set -- -f; source sync.sh
 ```
 
 ### Git-free install
@@ -29,7 +37,7 @@ set -- -f; source bootstrap.sh
 To install these dotfiles without Git:
 
 ```bash
-cd; curl -#L https://github.com/hersonls/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,bootstrap.sh}
+cd; curl -#L https://github.com/hersonls/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,sync.sh}
 ```
 
 To update later on, just run that command again.
