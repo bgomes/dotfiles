@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE}")"
 git pull
 
 function doIt() {
-	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" -av --no-perms . ~
+	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "sync.sh"  --exclude "install_deps.sh" --exclude "README.md" -av --no-perms . ~
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
