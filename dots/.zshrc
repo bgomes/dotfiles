@@ -9,6 +9,9 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Disable autocorrect
+unsetopt correct
+
 # Add `~/bin` to the `$PATH`
 # 
 export PATH="/usr/local/share/python/:/usr/local/share/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/share/npm/bin:$HOME/bin:$PATH"
