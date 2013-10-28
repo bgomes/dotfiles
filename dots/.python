@@ -1,0 +1,4 @@
+#!/usr/bin/env python
+
+# Install virtualenvwrapper
+pip install virtualenvwrapper

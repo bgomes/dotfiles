@@ -79,7 +79,7 @@ export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
 # Virtualenvwrapper Settings
 # 
 export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER=/usr/local/share/python/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 
 [ -f ${VIRTUALENVWRAPPER} ] && source ${VIRTUALENVWRAPPER}
 
