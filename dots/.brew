@@ -12,6 +12,7 @@ brew upgrade
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
 echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
+
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
 
@@ -25,6 +26,9 @@ chsh -s /bin/zsh
 # Install hersonls theme for zsh
 git clone https://gist.github.com/5449283.git ~/.oh-my-zsh/themes/hersonls.zsh-theme
 mv ~/.oh-my-zsh/themes/hersonls/hersonls.zsh-theme ~/.oh-my-zsh/themes/
+
+# Install tmux
+brew install tmux
 
 # Install node
 brew install node
