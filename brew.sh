@@ -24,13 +24,17 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 chsh -s /bin/zsh
 
 # Install hersonls theme for zsh
-curl -o ~/.oh-my-zsh/themes/hersonls.zsh-theme https://gist.github.com/hersonls/5449283/raw/
+wget https://gist.github.com/hersonls/5449283/raw/ -O ~/.oh-my-zsh/themes/hersonls.zsh-theme
 
 # Install tmux
 brew install tmux
 
+# Install powerline
+brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
+
 # Install node
 brew install node
+. <(npm completion)
 
 # Install grunt
 npm install grunt grunt-cli -g
@@ -38,6 +42,9 @@ npm install grunt grunt-cli -g
 # Install python
 brew install python
 brew install python3
+
+# reattach-to-user-namespace
+brew install reattach-to-user-namespace
 
 # Install other useful binaries
 brew install git

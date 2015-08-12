@@ -136,7 +136,7 @@ alias pumpitup="osascript -e 'set volume 7'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 
 # Python 2.7.4
-alias mkve='mkvirtualenv --no-site-packages --python=/usr/local/Cellar/python/2.7.5/bin/python'
+alias mkve="mkvirtualenv --no-site-packages --python=$(which python)"
 
 # Python 3.2
-alias mkve3='mkvirtualenv --no-site-packages --python=/usr/local/Cellar/python3/3.3.2/bin/python3'
+alias mkve3="mkvirtualenv --no-site-packages --python=$(which python3)"

@@ -13,3 +13,6 @@ chmod +x ~/code/opensource/z/z.sh
 
 # For the c alias (syntax highlighted cat)
 sudo easy_install Pygments
+
+# Powerline for tmux
+pip install powerline-status

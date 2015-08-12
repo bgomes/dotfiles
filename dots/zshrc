@@ -1,22 +1,18 @@
 # Start TMUX if not started
-if [ "$TMUX" = "" ]; then
-    tmux attach -t base || tmux new -s base
-fi
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="hersonls"
 CASE_SENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
-plugins=(git)
-
+plugins=(git yeoman)
 source $ZSH/oh-my-zsh.sh
 
 # Disable autocorrect
 unsetopt correct
 
-# Add `~/bin` to the `$PATH` 
-export PATH="/usr/local/share/python/:/usr/local/share/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/local/share/npm/bin:$HOME/bin:$PATH"
+# Add `~/bin` to the `$PATH`
+export PATH="/usr/local/bin:/usr/local/mysql/bin:/usr/local/share/python/:/usr/local/share/:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/share/npm/bin:$HOME/bin:./node_modules/.bin:$GOPATH/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -40,6 +36,20 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER=/usr/local/bin/virtualenvwrapper.sh
 
 [ -f ${VIRTUALENVWRAPPER} ] && source ${VIRTUALENVWRAPPER}
- 
-# PIP Cache
-export PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache/
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# Android SDK
+export ANDROID_HOME=~/android/android-sdk-macosx
+export ANDROID_SDK_HOME=~/.android/avd
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+# GO
+export GOPATH=$GOPATH:~/code/go
+
+# Tmux
+export POWERLINE_CONFIG_COMMAND=/usr/local/bin/powerline-config
+
+if [ "$TMUX" = "" ]; then
+    tmux attach -t base || tmux new -s base
+fi
