@@ -116,3 +116,9 @@ noremap <Right> :tabnext<CR>
 if !exists('g:AutoPairs')
     let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<':'>'}
 end
+
+" GUI Settings
+"
+" Remove scroolbar
+set guioptions-=L
+set guioptions-=r
