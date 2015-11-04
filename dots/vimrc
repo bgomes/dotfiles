@@ -33,7 +33,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "*****************************************************************************
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'gosukiwi/vim-atom-dark'
+NeoBundle 'vim-scripts/tcd.vim'
 
 call neobundle#end()
 
@@ -64,6 +66,10 @@ set ruler
 set number
 set relativenumber 
 
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 " Color Scheme
 "
 :set t_Co=256
@@ -71,12 +77,16 @@ color atom-dark-256
 
 " Show hidden chars
 "
-:set nolist
-" :set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
+:set list
+:set listchars=eol:¬,tab:>~,trail:·,extends:>,precedes:<
 
 " Copy to system clipboard
 "
 set clipboard=unnamed
+
+" Keep selection after indent
+vnoremap < <gv
+vnoremap > >gv
 
 " This is how to be a ninja in VIM
 " Disable arrow keys
@@ -100,3 +110,9 @@ nnoremap <C-H> <C-W><C-H>
 "
 noremap <Left> :tabprev<CR>
 noremap <Right> :tabnext<CR>
+
+" Plugin configuration
+"
+if !exists('g:AutoPairs')
+    let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<':'>'}
+end
