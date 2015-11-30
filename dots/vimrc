@@ -36,6 +36,11 @@ NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'gosukiwi/vim-atom-dark'
 NeoBundle 'vim-scripts/tcd.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'MarcWeber/vim-addon-mw-utils'
+NeoBundle 'tomtom/tlib_vim'
+NeoBundle 'garbas/vim-snipmate'
+NeoBundle 'honza/vim-snippets'
 
 call neobundle#end()
 
@@ -58,7 +63,8 @@ let g:ctrlp_show_hidden = 1 " Show hidden files
 "
 " Syntax highlight
 "
-:syntax on
+syntax on
+set synmaxcol=120
 
 " Visual
 "
@@ -72,13 +78,13 @@ set expandtab
 
 " Color Scheme
 "
-:set t_Co=256
+set t_Co=256
 color atom-dark-256
 
 " Show hidden chars
 "
-:set list
-:set listchars=eol:¬,tab:>~,trail:·,extends:>,precedes:<
+set list
+set listchars=eol:¬,tab:>~,trail:·,extends:>,precedes:<
 
 " Copy to system clipboard
 "
@@ -106,6 +112,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Lightline
+"
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 " Map arrow keys to move between tabs
 "
 noremap <Left> :tabprev<CR>
@@ -113,12 +124,20 @@ noremap <Right> :tabnext<CR>
 
 " Plugin configuration
 "
+
+" AutoPairs
 if !exists('g:AutoPairs')
     let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<':'>'}
 end
+
+" Ctrlp
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,.DS_Store
+let g:ctrlp_custom_ignore='\v[\/]\.(git|hg|svn|tox)$'
 
 " GUI Settings
 "
 " Remove scroolbar
 set guioptions-=L
 set guioptions-=r
+
