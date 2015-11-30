@@ -82,6 +82,7 @@ set expandtab
 set t_Co=256
 color atom-dark-256
 
+
 " Show hidden chars
 "
 set list
@@ -141,4 +142,22 @@ let g:ctrlp_custom_ignore='\v[\/]\.(git|hg|svn|tox)$'
 " Remove scroolbar
 set guioptions-=L
 set guioptions-=r
+
+" Languages customizations
+"
+"
+" Python
+"
+" This function will color only the char in the position 81 when you cross the
+" limit in pep8 :D
+augroup collumnLimit
+  autocmd!
+  autocmd BufEnter,WinEnter,FileType python 
+        \ highlight CollumnLimit ctermbg=DarkGrey guibg=DarkGrey
+  let collumnLimit = 81
+  let pattern =
+        \ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
+  autocmd BufEnter,WinEnter,FileType python 
+        \ let w:m1=matchadd('CollumnLimit', pattern, -1)
+augroup END
 
