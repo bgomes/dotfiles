@@ -31,6 +31,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "*****************************************************************************
 " Install plugins if not already installed
 "*****************************************************************************
+NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'gosukiwi/vim-atom-dark'
