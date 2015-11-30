@@ -31,7 +31,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "*****************************************************************************
 " Install plugins if not already installed
 "*****************************************************************************
-NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'gosukiwi/vim-atom-dark'
@@ -41,6 +40,7 @@ NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'tomtom/tlib_vim'
 NeoBundle 'garbas/vim-snipmate'
 NeoBundle 'honza/vim-snippets'
+NeoBundle 'ctrlpvim/ctrlp.vim'
 
 call neobundle#end()
 
