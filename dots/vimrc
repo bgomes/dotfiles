@@ -42,6 +42,7 @@ NeoBundle 'tomtom/tlib_vim'
 NeoBundle 'garbas/vim-snipmate'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'davidhalter/jedi-vim'
 
 call neobundle#end()
 
@@ -126,6 +127,10 @@ noremap <Right> :tabnext<CR>
 
 " Plugin configuration
 "
+
+" NERDTree
+" Give a shortcut key to NERD Tree
+map <F2> :NERDTreeToggle<CR>
 
 " AutoPairs
 if !exists('g:AutoPairs')
