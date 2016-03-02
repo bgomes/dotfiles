@@ -43,6 +43,10 @@ NeoBundle 'garbas/vim-snipmate'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'mhartington/oceanic-next'
+NeoBundle 'isRuslan/vim-es6'
+NeoBundle 'suan/vim-instant-markdown'
+NeoBundle 'fatih/vim-go'
 
 call neobundle#end()
 
@@ -73,17 +77,27 @@ set synmaxcol=120
 set ruler
 set number
 set relativenumber 
+set cursorline
 
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
+
 
 " Color Scheme
 "
+" set t_Co=256
+" color atom-dark-256
+
+" Theme Oceanic Next
 set t_Co=256
-color atom-dark-256
+colorscheme OceanicNext
+set background=dark
 
-
+"if has('gui_running')
+"    set guifont=Latin\ Modern\ Mono\ 10\ Regular:h14
+      "set guifont=Lucida_Console:h11
+"endif
 " Show hidden chars
 "
 set list
@@ -114,6 +128,10 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Remap :wq and :q to save and delete buffer
+:cnoreabbrev wq w<bar>bd
+:cnoreabbrev q bd
 
 " Lightline
 "
@@ -166,3 +184,7 @@ augroup collumnLimit
         \ let w:m1=matchadd('CollumnLimit', pattern, -1)
 augroup END
 
+" Go
+"
+au FileType go setl sw=8 sts=8 et
+autocmd Filetype go setlocal ts=8 sw=8 expandtab

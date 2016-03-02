@@ -54,11 +54,15 @@ if [ "$TMUX" = "" ]; then
     tmux attach -t base || tmux new -s base
 fi
 
-f(){ 
-   if [ "$PWD" != "$LPWD" ]; then 
-	LPWD="$PWD"; 
-	tmux rename-window ${PWD//*\//}; 
-   fi 
-}; 
-
-export PROMPT_COMMAND=f;
+function chpwd() {
+  if [ -z "$VIRTUAL_ENV" ]; then
+    # If exists a virtualenv with name of directory, load it!
+    workon ${PWD##*/} 2> /dev/null
+  else
+    # If a virtual env are loaded, rename window with they name
+    TMUX_WINDOW_NAME=$(tmux display-message -p '#W')
+    if [ $TMUX_WINDOW_NAME != ${VIRTUAL_ENV##*/} ]; then
+      tmux rename-window ${VIRTUAL_ENV##*/} ; 
+    fi
+  fi
+}
