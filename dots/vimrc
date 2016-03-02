@@ -129,9 +129,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Remap :wq and :q to save and delete buffer
+"
+" Remap :wq to save and delete buffer
 :cnoreabbrev wq w<bar>bd
-:cnoreabbrev q bd
+" This will help me not think I already save 
+:cnoreabbrev W w
 
 " Lightline
 "
