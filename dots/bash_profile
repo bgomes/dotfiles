@@ -1,5 +1,6 @@
 # Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH"
+export NACL_SDK_ROOT="/usr/local/lib/nacl_sdk/pepper_49"
+export PATH="$HOME/bin:$NACL_SDK_ROOT/tools:$NACL_SDK_ROOT/toolchain/mac_pnacl/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.

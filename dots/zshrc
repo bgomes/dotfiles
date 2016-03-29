@@ -11,8 +11,10 @@ source $ZSH/oh-my-zsh.sh
 # Disable autocorrect
 unsetopt correct
 
+export NACL_SDK_ROOT="/usr/local/lib/nacl_sdk/pepper_49"
+
 # Add `~/bin` to the `$PATH`
-export PATH="/usr/local/bin:/usr/local/mysql/bin:/usr/local/share/python/:/usr/local/share/:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/share/npm/bin:$HOME/bin:./node_modules/.bin:$GOPATH/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/mysql/bin:/usr/local/share/python/:/usr/local/share/:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/share/npm/bin:$HOME/bin:./node_modules/.bin:$GOPATH/bin:$NACL_SDK_ROOT/tools:$NACL_SDK_ROOT/toolchain/mac_pnacl/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -66,3 +68,4 @@ function chpwd() {
     fi
   fi
 }
+

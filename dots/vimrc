@@ -47,6 +47,8 @@ NeoBundle 'mhartington/oceanic-next'
 NeoBundle 'isRuslan/vim-es6'
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
 
 call neobundle#end()
 
@@ -66,11 +68,17 @@ let g:ctrlp_show_hidden = 1 " Show hidden files
 "*****************************************************************************
 " Personal configuration
 "*****************************************************************************
-"
+
+" Peformance
+set lazyredraw
+set ttyfast
+set ttyscroll=3
+
+
 " Syntax highlight
 "
 syntax on
-set synmaxcol=120
+set synmaxcol=180
 
 " Visual
 "
@@ -92,7 +100,7 @@ set expandtab
 " Theme Oceanic Next
 set t_Co=256
 colorscheme OceanicNext
-set background=dark
+"set background=dark
 
 "if has('gui_running')
 "    set guifont=Latin\ Modern\ Mono\ 10\ Regular:h14
@@ -190,3 +198,7 @@ augroup END
 "
 au FileType go setl sw=8 sts=8 et
 autocmd Filetype go setlocal ts=8 sw=8 expandtab
+
+" Javascript Lib Syntax
+"
+let g:used_javascript_libs = 'underscore,backbone,angularjs,angularui,angularuirouter,jquery'
