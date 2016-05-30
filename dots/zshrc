@@ -14,7 +14,7 @@ unsetopt correct
 export NACL_SDK_ROOT="/usr/local/lib/nacl_sdk/pepper_49"
 
 # Add `~/bin` to the `$PATH`
-export PATH="/usr/local/bin:/usr/local/mysql/bin:/usr/local/share/python/:/usr/local/share/:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/share/npm/bin:$HOME/bin:./node_modules/.bin:$GOPATH/bin:$NACL_SDK_ROOT/tools:$NACL_SDK_ROOT/toolchain/mac_pnacl/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/mysql/bin:/usr/local/share/python/:/usr/local/share/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/share/npm/bin:$HOME/bin:./node_modules/.bin:$GOPATH/bin:$NACL_SDK_ROOT/tools:$NACL_SDK_ROOT/toolchain/mac_pnacl/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -31,7 +31,7 @@ unset file
 [ -f ~/Code/opensource/z/z.sh ] && . ~/Code/opensource/z/z.sh
 
 # Update python path
-export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
+# export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
 
 # Virtualenvwrapper Settings
 export WORKON_HOME=$HOME/.virtualenvs
@@ -50,7 +50,7 @@ export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export GOPATH=$GOPATH:~/code/go
 
 # Tmux
-export POWERLINE_CONFIG_COMMAND=/usr/local/bin/powerline-config
+# export POWERLINE_CONFIG_COMMAND=/usr/local/bin/powerline-config
 
 if [ "$TMUX" = "" ]; then
     tmux attach -t base || tmux new -s base

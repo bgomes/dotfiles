@@ -40,16 +40,35 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'tomtom/tlib_vim'
 NeoBundle 'garbas/vim-snipmate'
+NeoBundle 'hersonls/vim_doc_snippets'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'mhartington/oceanic-next'
+NeoBundle 'yosiat/oceanic-next-vim'
 NeoBundle 'isRuslan/vim-es6'
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'rodjek/vim-puppet'
+NeoBundle 'vim-scripts/auto_autoread.vim'
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'Quramy/vim-js-pretty-template'
+
+NeoBundle 'Shougo/vimproc.vim', {
+    \ 'build' : {
+    \     'windows' : 'tools\\update-dll-mingw',
+    \     'cygwin' : 'make -f make_cygwin.mak',
+    \     'mac' : 'make -f make_mac.mak',
+    \     'linux' : 'make',
+    \     'unix' : 'gmake',
+    \    
+    \  },
+    \}
+
+NeoBundle 'Quramy/tsuquyomi'
+
 
 call neobundle#end()
 
@@ -65,16 +84,15 @@ NeoBundleCheck
 "*****************************************************************************
 let g:ctrlp_show_hidden = 1 " Show hidden files
 
-
 "*****************************************************************************
 " Personal configuration
 "*****************************************************************************
 
 " Peformance
-set lazyredraw
+set nocompatible
 set ttyfast
+set lazyredraw
 set ttyscroll=3
-
 
 " Syntax highlight
 "
@@ -91,26 +109,20 @@ set cursorline
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set autoread
 
 
 " Color Scheme
 "
-" set t_Co=256
-" color atom-dark-256
-
 " Theme Oceanic Next
 set t_Co=256
 colorscheme OceanicNext
-"set background=dark
+set background=dark
 
-"if has('gui_running')
-"    set guifont=Latin\ Modern\ Mono\ 10\ Regular:h14
-      "set guifont=Lucida_Console:h11
-"endif
 " Show hidden chars
 "
-set list
-set listchars=eol:¬,tab:>~,trail:·,extends:>,precedes:<
+"set list
+"set listchars=eol:¬,tab:>~,trail:·,extends:>,precedes:<
 
 " Copy to system clipboard
 "
@@ -180,25 +192,35 @@ set guioptions-=r
 " Languages customizations
 "
 "
-" Python
-"
-" This function will color only the char in the position 81 when you cross the
-" limit in pep8 :D
-augroup collumnLimit
+augroup FileTypeAutocmd 
   autocmd!
+
+  " Python
   autocmd BufEnter,WinEnter,FileType python 
         \ highlight CollumnLimit ctermbg=DarkGrey guibg=DarkGrey
   let collumnLimit = 81
   let pattern =
         \ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
+
   autocmd BufEnter,WinEnter,FileType python 
         \ let w:m1=matchadd('CollumnLimit', pattern, -1)
+
+  " Git
+  autocmd Filetype gitcommit setlocal spell textwidth=72
+
+  " Makefile
+  autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+
+  " Typescript
+  autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+
+  " Go
+  autocmd Filetype go setlocal ts=8 sw=8 expandtab
 augroup END
 
 " Go
 "
 au FileType go setl sw=8 sts=8 et
-autocmd Filetype go setlocal ts=8 sw=8 expandtab
 
 " Javascript Lib Syntax
 "
@@ -216,3 +238,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_html_tidy_exec = 'tidy5'
 let g:syntastic_loc_list_height = 3 
+let g:syntastic_javascript_checkers = ['jshint']
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
+let g:syntastic_typescript_tsc_fname = ''
