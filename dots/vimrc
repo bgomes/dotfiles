@@ -55,6 +55,7 @@ NeoBundle 'rodjek/vim-puppet'
 NeoBundle 'vim-scripts/auto_autoread.vim'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'Quramy/vim-js-pretty-template'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 
 NeoBundle 'Shougo/vimproc.vim', {
     \ 'build' : {
@@ -89,10 +90,10 @@ let g:ctrlp_show_hidden = 1 " Show hidden files
 "*****************************************************************************
 
 " Peformance
-set nocompatible
+" set nocompatible
 set ttyfast
-set lazyredraw
-set ttyscroll=3
+" set lazyredraw
+" set ttyscroll=3
 
 " Syntax highlight
 "
@@ -172,6 +173,7 @@ noremap <Right> :tabnext<CR>
 " NERDTree
 " Give a shortcut key to NERD Tree
 map <F2> :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']
 
 " AutoPairs
 if !exists('g:AutoPairs')
