@@ -14,7 +14,27 @@ unsetopt correct
 export NACL_SDK_ROOT="/usr/local/lib/nacl_sdk/pepper_49"
 
 # Add `~/bin` to the `$PATH`
-export PATH="/usr/local/bin:/usr/local/mysql/bin:/usr/local/share/python/:/usr/local/share/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/share/npm/bin:$HOME/bin:./node_modules/.bin:$GOPATH/bin:$NACL_SDK_ROOT/tools:$NACL_SDK_ROOT/toolchain/mac_pnacl/bin:$PATH"
+addpath() {
+  export PATH="${1}:$PATH"
+}
+
+addpath "$NACL_SDK_ROOT/toolchain/mac_pnacl/bin"
+addpath "$NACL_SDK_ROOT/tools"
+addpath "$GOPATH/bin"
+addpath "$HOME/bin"
+addpath "/usr/local/share/npm/bin"
+addpath "/usr/local/git/bin"
+addpath "/opt/X11/bin"
+addpath "/usr/local/sbin"
+addpath "/sbin"
+addpath "/usr/sbin"
+addpath "/bin"
+addpath "/usr/bin"
+addpath "/usr/local/share/"
+addpath "/usr/local/share/python/"
+addpath "/usr/local/mysql/bin"
+addpath "/usr/local/bin"
+addpath "./node_modules/.bin"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
