@@ -39,7 +39,8 @@ NeoBundle 'vim-scripts/tcd.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
 NeoBundle 'tomtom/tlib_vim'
-NeoBundle 'garbas/vim-snipmate'
+"NeoBundle 'garbas/vim-snipmate'
+NeoBundle 'SirVer/ultisnips'
 NeoBundle 'hersonls/vim_doc_snippets'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'ctrlpvim/ctrlp.vim'
@@ -56,6 +57,8 @@ NeoBundle 'vim-scripts/auto_autoread.vim'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'Quramy/vim-js-pretty-template'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'claco/jasmine.vim'
+NeoBundle 'moll/vim-node'
 
 NeoBundle 'Shougo/vimproc.vim', {
     \ 'build' : {
@@ -215,6 +218,7 @@ augroup FileTypeAutocmd
 
   " Typescript
   autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+  autocmd FileType typescript UltiSnipsAddFiletypes javascript-jasmine
 
   " Go
   autocmd Filetype go setlocal ts=8 sw=8 expandtab
@@ -244,3 +248,11 @@ let g:syntastic_javascript_checkers = ['jshint']
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:syntastic_typescript_tsc_fname = ''
+
+" Ultisnips
+"
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "ultisnips_my"]
