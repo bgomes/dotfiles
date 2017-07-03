@@ -1,7 +1,6 @@
 "*****************************************************************************
 " NeoBundle core
 "*****************************************************************************
-
 if has('vim_starting')
   set nocompatible               " Be iMproved
 
@@ -31,48 +30,40 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "*****************************************************************************
 " Install plugins if not already installed
 "*****************************************************************************
-NeoBundle 'editorconfig/editorconfig-vim'
+" Editor improvers
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'othree/html5.vim'
 NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'gosukiwi/vim-atom-dark'
-NeoBundle 'vim-scripts/tcd.vim'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'MarcWeber/vim-addon-mw-utils'
-NeoBundle 'tomtom/tlib_vim'
-"NeoBundle 'garbas/vim-snipmate'
+NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'SirVer/ultisnips'
-NeoBundle 'hersonls/vim_doc_snippets'
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'yosiat/oceanic-next-vim'
-NeoBundle 'isRuslan/vim-es6'
-NeoBundle 'suan/vim-instant-markdown'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'HerringtonDarkholme/yats.vim'
+NeoBundle 'tell-k/vim-autopep8'
+NeoBundle 'ap/vim-css-color'
+NeoBundle 'maksimr/vim-jsbeautify'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'othree/yajs.vim'
+NeoBundle 'othree/es.next.syntax.vim'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'rodjek/vim-puppet'
-NeoBundle 'vim-scripts/auto_autoread.vim'
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'Quramy/vim-js-pretty-template'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'claco/jasmine.vim'
-NeoBundle 'moll/vim-node'
-
 NeoBundle 'Shougo/vimproc.vim', {
-    \ 'build' : {
-    \     'windows' : 'tools\\update-dll-mingw',
-    \     'cygwin' : 'make -f make_cygwin.mak',
-    \     'mac' : 'make -f make_mac.mak',
-    \     'linux' : 'make',
-    \     'unix' : 'gmake',
-    \    
-    \  },
-    \}
-
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 NeoBundle 'Quramy/tsuquyomi'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'mileszs/ack.vim'
 
+" Theme
+NeoBundle 'rakr/vim-two-firewatch'
+NeoBundle 'alessandroyorba/monrovia'
+NeoBundle 'arcticicestudio/nord-vim'
 
 call neobundle#end()
 
@@ -95,8 +86,8 @@ let g:ctrlp_show_hidden = 1 " Show hidden files
 " Peformance
 " set nocompatible
 set ttyfast
-" set lazyredraw
-" set ttyscroll=3
+set lazyredraw
+set ttyscroll=3
 
 " Syntax highlight
 "
@@ -119,9 +110,15 @@ set autoread
 " Color Scheme
 "
 " Theme Oceanic Next
-set t_Co=256
-colorscheme OceanicNext
-set background=dark
+"set t_Co=256
+"set background=dark
+"let g:two_firewatch_italics=1
+color nord
+colorscheme nord
+
+if has('gui_running')
+  set guifont=Hack:h11
+endif
 
 " Show hidden chars
 "
@@ -163,8 +160,10 @@ nnoremap <C-H> <C-W><C-H>
 " Lightline
 "
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'nord',
       \ }
+set laststatus=2
+
 " Map arrow keys to move between tabs
 "
 noremap <Left> :tabprev<CR>
@@ -178,81 +177,79 @@ noremap <Right> :tabnext<CR>
 map <F2> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$']
 
-" AutoPairs
-if !exists('g:AutoPairs')
-    let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<':'>'}
-end
-
-" Ctrlp
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__,.DS_Store
-let g:ctrlp_custom_ignore='\v[\/]\.(git|hg|svn|tox)$'
-
 " GUI Settings
 "
 " Remove scroolbar
 set guioptions-=L
 set guioptions-=r
 
-" Languages customizations
+" Javascript
 "
-"
-augroup FileTypeAutocmd 
-  autocmd!
-
-  " Python
-  autocmd BufEnter,WinEnter,FileType python 
-        \ highlight CollumnLimit ctermbg=DarkGrey guibg=DarkGrey
-  let collumnLimit = 81
-  let pattern =
-        \ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
-
-  autocmd BufEnter,WinEnter,FileType python 
-        \ let w:m1=matchadd('CollumnLimit', pattern, -1)
-
-  " Git
-  autocmd Filetype gitcommit setlocal spell textwidth=72
-
-  " Makefile
-  autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
-
-  " Typescript
-  autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
-  autocmd FileType typescript UltiSnipsAddFiletypes javascript-jasmine
-
-  " Go
-  autocmd Filetype go setlocal ts=8 sw=8 expandtab
-augroup END
-
-" Go
-"
-au FileType go setl sw=8 sts=8 et
-
-" Javascript Lib Syntax
-"
-let g:used_javascript_libs = 'underscore,backbone,angularjs,angularui,angularuirouter,jquery'
-
-" Syntastic
-"
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_html_tidy_exec = 'tidy5'
-let g:syntastic_loc_list_height = 3 
-let g:syntastic_javascript_checkers = ['jshint']
-let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tsuquyomi']
-let g:syntastic_typescript_tsc_fname = ''
+let g:used_javascript_libs = 'jquery,angularjs'
 
 " Ultisnips
+" 
 "
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "ultisnips_my"]
+let g:UltiSnipsExpandTrigger       = "<tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetDirectories  = ["snips"]
+
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+
+" JsBeautify
+"
+autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+
+" HTML, Django, Jinja, Dram {{{
+augroup ft_html
+  au!
+
+  au BufNewFile,BufRead *.html setlocal filetype=htmldjango
+  au BufNewFile,BufRead *.dram setlocal filetype=htmldjango
+
+  au FileType html,htmldjango setlocal foldmethod=manual
+
+  " Use <localleader>f to fold the current tag.
+  au FileType html,htmldjango nnoremap <buffer> <localleader>f Vatzf
+
+  " Use <localleader>t to fold the current templatetag.
+  au FileType html,htmldjango nmap <buffer> <localleader>t viikojozf
+
+  " Indent tag
+  au FileType html,htmldjango nnoremap <buffer> <localleader>= Vat=
+
+  " Django tags
+  au FileType htmldjango inoremap <buffer> <c-t> {%<space><space>%}<left><left><left>
+
+  " Django variables
+  au FileType htmldjango inoremap <buffer> <c-b> {{<space><space>}}<left><left><left>
+
+  set ballooneval
+  autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr() 
+augroup END
+
+" Indent Guides
+"
+"let g:indent_guides_guide_size = 1 
+let g:indent_guides_start_level = 2
+let g:indent_guides_color_change_percent = 3 
