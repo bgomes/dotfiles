@@ -32,6 +32,13 @@ wget https://gist.github.com/hersonls/5449283/raw/ -O ~/.oh-my-zsh/themes/herson
 # Install tmux
 brew install tmux
 
+# Install tmux
+brew install tmux
+
+# Install macvim
+brew install  macvim --with-override-system-vim --with-python3 --with-lua
+
+
 # Install powerline
 brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
 git clone https://github.com/powerline/fonts.git
