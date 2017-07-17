@@ -15,4 +15,4 @@ chmod +x ~/code/opensource/z/z.sh
 sudo easy_install Pygments
 
 # Powerline for tmux
-pip install powerline-status
+sudo easy_install powerline-status

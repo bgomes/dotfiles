@@ -56,11 +56,6 @@ defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 # Set Help Viewer windows to non-floating mode
 defaults write com.apple.helpviewer DevMode -bool true
 
-# Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
-# Commented out, as this is known to cause problems when saving files in
-# Adobe Illustrator CS5 :(
-#echo "0x08000100:0" > ~/.CFUserTextEncoding
-
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
 # in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
@@ -93,8 +88,6 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # Enable access for assistive devices
 echo -n 'a' | sudo tee /private/var/db/.AccessibilityAPIEnabled > /dev/null 2>&1
 sudo chmod 444 /private/var/db/.AccessibilityAPIEnabled
-# TODO: avoid GUI password prompt somehow (http://apple.stackexchange.com/q/60476/4408)
-#sudo osascript -e 'tell application "System Events" to set UI elements enabled to true'
 
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
 defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
@@ -106,7 +99,9 @@ defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Automatically illuminate built-in MacBook keyboard in low light
 defaults write com.apple.BezelServices kDim -bool true
@@ -128,6 +123,8 @@ systemsetup -settimezone "America/Fortaleza" > /dev/null
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+# 
+
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
@@ -136,7 +133,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-# Save screenshots to the desktop
+# Save screenshots to the Pictures folder 
 defaults write com.apple.screencapture location -string "$HOME/Pictures/Screenshots/"
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
@@ -150,6 +147,12 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 # Enable HiDPI display modes (requires restart)
 sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+
+# Appearance: Graphite
+defaults write -g AppleAquaColorVariant -int 6
+
+# Change to Dark interface
+defaults write NSGlobalDomain AppleInterfaceStyle Dark
 
 ###############################################################################
 # Finder                                                                      #
@@ -305,42 +308,12 @@ defaults write com.apple.appstore WebKitDeveloperExtras -bool true
 defaults write com.apple.appstore ShowDebugMenu -bool true
 
 ###############################################################################
-# Google Chrome & Google Chrome Canary                                        #
-###############################################################################
-
-# Allow installing user scripts via GitHub or Userscripts.org
-defaults write com.google.Chrome ExtensionInstallSources -array "https://*.github.com/*" "http://userscripts.org/*"
-defaults write com.google.Chrome.canary ExtensionInstallSources -array "https://*.github.com/*" "http://userscripts.org/*"
-
-###############################################################################
-# Twitter.app                                                                 #
-###############################################################################
-
-# Disable smart quotes as it’s annoying for code tweets
-defaults write com.twitter.twitter-mac AutomaticQuoteSubstitutionEnabled -bool false
-
-# Show the app window when clicking the menu icon
-defaults write com.twitter.twitter-mac MenuItemBehavior -int 1
-
-# Enable the hidden ‘Develop’ menu
-defaults write com.twitter.twitter-mac ShowDevelopMenu -bool true
-
-# Open links in the background
-defaults write com.twitter.twitter-mac openLinksInBackground -bool true
-
-# Allow closing the ‘new tweet’ window by pressing `Esc`
-defaults write com.twitter.twitter-mac ESCClosesComposeWindow -bool true
-
-# Show full names rather than Twitter handles
-defaults write com.twitter.twitter-mac ShowFullNames -bool true
-
-###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
 for app in "Address Book" "Calendar" "Contacts" "Dock" "Finder" \
 	"Mail" "Safari" "SizeUp" "SystemUIServer" "Terminal" "Transmission" \
-	"Twitter" "iCal" "iTunes"; do
+	"iCal" "iTunes"; do
 	killall "$app" > /dev/null 2>&1
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."

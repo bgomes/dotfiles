@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Install brew
-ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Make sure we’re using the latest Homebrew
 brew update
@@ -15,6 +15,9 @@ echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH.
 
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
+
+# Install wget
+brew install wget 
 
 # Install zsh shell
 brew install zsh
@@ -31,17 +34,16 @@ brew install tmux
 
 # Install powerline
 brew install https://raw.github.com/Homebrew/homebrew-dupes/master/grep.rb
+git clone https://github.com/powerline/fonts.git
+cd fonts
+./install.sh
+
+# Install google chrome
+brew cask install google-chrome
 
 # Install node
 brew install node
 . <(npm completion)
-
-# Install grunt
-npm install grunt grunt-cli -g
-
-# Install python
-brew install python
-brew install python3
 
 # reattach-to-user-namespace
 brew install reattach-to-user-namespace
@@ -49,7 +51,8 @@ brew install reattach-to-user-namespace
 # Install other useful binaries
 brew install git
 
-brew tap homebrew/versions
+# Install pyenv
+brew install pyenv
 
 # Remove outdated versions from the cellar
 brew cleanup
