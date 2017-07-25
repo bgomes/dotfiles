@@ -61,5 +61,8 @@ brew install git
 # Install pyenv
 brew install pyenv
 
+# Install heroku 
+brew install heroku 
+
 # Remove outdated versions from the cellar
 brew cleanup

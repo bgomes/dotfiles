@@ -38,7 +38,8 @@ addpath "$GOPATH/bin"
 addpath "$HOME/bin"
 addpath "/usr/local/share/npm/bin"
 addpath "/usr/local/git/bin"
-addpath "/opt/X11/bin" addpath "/usr/local/sbin"
+addpath "/opt/X11/bin" 
+addpath "/usr/local/sbin"
 addpath "/sbin"
 addpath "/usr/sbin"
 addpath "/bin"
@@ -49,6 +50,7 @@ addpath "/usr/local/mysql/bin"
 addpath "/usr/local/bin"
 addpath "./node_modules/.bin"
 addpath "$HOME/.yarn/bin"
+addpath "$(yarn global bin)"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -92,14 +94,15 @@ export GOPATH=$GOPATH:~/code/go
 #fi
 
 function chpwd() {
-  if [ -z "$VIRTUAL_ENV" ]; then
-    # If exists a virtualenv with name of directory, load it!
-    workon ${PWD##*/} 2> /dev/null
-  else
+  REPO_PATH=`git rev-parse --show-toplevel 2> /dev/null`
+  REPO_NAME=`basename ${REPO_PATH} 2> /dev/null`
+  REPO_NAME=`echo $REPO_NAME| tr "a-z" "A-Z"`
+
+  if [ -n "$REPO_NAME" ]; then
     # If a virtual env are loaded, rename window with they name
     TMUX_WINDOW_NAME=$(tmux display-message -p '#W')
-    if [ $TMUX_WINDOW_NAME != ${VIRTUAL_ENV##*/} ]; then
-      tmux rename-window ${VIRTUAL_ENV##*/} ; 
+    if [ $TMUX_WINDOW_NAME != $REPO_NAME ]; then
+      tmux rename-window ${REPO_NAME} ; 
     fi
   fi
 }
@@ -128,3 +131,6 @@ compdef _comp_npm npmbin
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
