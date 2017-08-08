@@ -97,7 +97,7 @@ set ttyscroll=3
 " Syntax highlight
 "
 syntax on
-set synmaxcol=180
+set synmaxcol=130
 
 " Visual
 "

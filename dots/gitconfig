@@ -34,6 +34,7 @@
 	attributesfile = ~/.gitattributes
 	# Treat spaces before tabs, lines that are indented with 8 or more spaces, and all kinds of trailing whitespace as an error
 	whitespace = space-before-tab,indent-with-non-tab,trailing-space
+	compression = 0
 
 [color]
 	# Use colors in Git commands that are capable of colored output when outputting to the terminal
@@ -79,3 +80,7 @@
 [user]
 	email = hersonls@gmail.com
 	name = Hersonls
+[http]
+	postBuffer = 1048576000
+[https]
+	postBuffer = 524288000
