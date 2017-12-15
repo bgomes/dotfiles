@@ -13,10 +13,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "mark-vlii"
-sudo scutil --set HostName "mark-vlii"
-sudo scutil --set LocalHostName "mark-vlii"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "mark-vlii"
+sudo scutil --set ComputerName "bgomes-air11"
+sudo scutil --set HostName "bgomes-air11"
+sudo scutil --set LocalHostName "bgomes-air11"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "bgomes-air11"
 
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
@@ -128,7 +128,7 @@ systemsetup -settimezone "America/Fortaleza" > /dev/null
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-# 
+#
 
 ###############################################################################
 # Screen                                                                      #
@@ -138,7 +138,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-# Save screenshots to the Pictures folder 
+# Save screenshots to the Pictures folder
 defaults write com.apple.screencapture location ~/Pictures/Screenshots
 
 

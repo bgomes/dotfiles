@@ -78,8 +78,8 @@
 [push]
 	default = matching
 [user]
-	email = hersonls@gmail.com
-	name = Hersonls
+	email = brunopereiragomes@gmail.com
+	name = Bruno Gomes
 [http]
 	postBuffer = 1048576000
 [https]

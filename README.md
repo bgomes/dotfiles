@@ -1,4 +1,4 @@
-# Hersonls dotfiles
+# BGomes dotfiles
 
 This is my version from [Mathias’s dotfiles](https://github.com/mathiasbynens/dotfiles)
 
@@ -76,4 +76,3 @@ When setting up a new Mac, you may want to install some common [Homebrew](http:/
 ## Want improve my workflow?
 
 Send a pullrequest to this repo :D
-
